@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>策略者模式</title>
+</head>
+<body>
+<div>
+    <input type="text" id="a">
+</div>
+<div>
+    <input type="text" id="b">
+</div>
+<div>
+    <input type="text" id="c">
+</div>
+<button id="valid">校验</button>
+<script>
+    var validate = (function () {
+      var instructions = {
+        noEmpty: '不能为空',
+        isPhone: '手机号不合法'
+      }
+      var types = {
+        noEmpty: function (val) {
+          return !!val
+        },
+        isPhone: function (val) {
+          return /\d+/g.test(+val)
+        }
+      }
+      return function (value, type) {
+        if (!types[type]) {
+          throw '检测类型不存在'
+        }
+        if (!types[type](value)) {
+          return instructions[type]
+        }
+        return false
+      }
+    }())
+
+    function Detect() {
+      this.result = []
+    }
+    Detect.prototype.add = function (value, types) {
+      if (!types instanceof Array) {
+        throw '检测类型只能为数组'
+      }
+      for (var i = 0; i < types.length; i++) {
+        var type = types[i]
+        var msg = validate(value, type)
+        if (!!msg) {
+          this.result.push(msg)
+        }
+      }
+    }
+    Detect.prototype.getResult = function () {
+      var result = this.result
+      return result.length ? result : false
+    }
+
+    var a = document.querySelector('#a'),
+      b = document.querySelector('#b'),
+      c = document.querySelector('#c'),
+      valid = document.querySelector('#valid'),
+      log = console.log;
+
+    var detect = new Detect()
+
+    valid.addEventListener('click', function () {
+        var valA = a.value,
+          valB = b.value,
+          valC = c.value;
+        log(valA, valB, valC)
+      detect.add(valA, ['noEmpty', 'isPhone'])
+      detect.add(valB, ['noEmpty', 'isPhone'])
+      detect.add(valC, ['noEmpty', 'isPhone'])
+      log(detect.getResult())
+    }, false)
+</script>
+</body>
+</html>

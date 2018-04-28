@@ -5,7 +5,7 @@
       <div class="label">
         非空
       </div>
-      <input v-validate.aa.bb="param2" type="text" class="input-control">
+      <input v-validate.aa.bb="inputValue" v-model="inputValue" type="text" class="input-control">
     </div>
 
     <div class="form-control">
@@ -41,6 +41,7 @@ export default {
   },
   data () {
     return {
+      inputValue: '',
       validateData: [
         {
           pattern: 'empty',

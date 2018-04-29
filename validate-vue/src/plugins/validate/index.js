@@ -22,8 +22,6 @@ export default {
       // 只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
       bind (el, binding) {
         const _this = this
-        console.log('bind')
-        console.log(binding, el)
       },
       // 当被绑定的元素插入到 DOM 中时……
       inserted (el) {

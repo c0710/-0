@@ -6,14 +6,14 @@ export const required = val => {
 }
 
 // 最大值
-export const max = (val, maxLen) => {
-  console.log('最大值校验')
+export const max = (val, maxLen = 999999) => {
+  console.log('最大值校验'+maxLen)
   return val.length <= maxLen
 }
 
 // 最小值
-export const min = (val, minLen) => {
-  console.log('最小值校验')
+export const min = (val, minLen = 0) => {
+  console.log('最小值校验'+minLen)
   return val.length >= minLen
 }
 

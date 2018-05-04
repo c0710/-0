@@ -12,6 +12,7 @@ export default function (rulesList, msgCfg={}) {
     required: msgCfg.required || '此项必填',
     max: msgCfg.max || `最大长度不能超过${rulesList.max}位！`,
     min: msgCfg.min || `最小长度不得小于${rulesList.min}位！`,
-    isPhone: msgCfg.isPhone || '手机号不合法'
+    phone: msgCfg.isPhone || '手机号不合法',
+    email: msgCfg.isPhone || '手机号不合法',
   }
 }

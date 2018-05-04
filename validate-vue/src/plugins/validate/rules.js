@@ -1,24 +1,15 @@
 
 // 非空校验
-export const required = val => {
-  console.log('非空校验')
-  return val !== ''
-}
+export const required = val => val !== ''
 
 // 最大值
-export const max = (val, maxLen = 999999) => {
-  console.log('最大值校验'+maxLen)
-  return val.length <= maxLen
-}
+export const max = (val, maxLen = 999999) => val.length <= maxLen
 
 // 最小值
-export const min = (val, minLen = 0) => {
-  console.log('最小值校验'+minLen)
-  return val.length >= minLen
-}
+export const min = (val, minLen = 0) => val.length >= minLen
 
 // 手机号码
-export const isPhone = val => {
-  console.log('手机号校验')
-  return /^[1][3,4,5,7,8,9][0-9]{9}$/.test(val)
-}
+export const phone = val => /^[1][3,4,5,7,8,9][0-9]{9}$/.test(val)
+
+// 邮箱
+export const email = val => /^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/.test(val)

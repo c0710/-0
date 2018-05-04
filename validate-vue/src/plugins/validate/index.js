@@ -6,9 +6,6 @@ export default {
   value: '',
   install() {
     Vue.directive('validate', {
-      bind (el, binding) {
-
-      },
       inserted (el, binding) {
         let rulesCfg = binding.value
         let messageList = generateErrMsg(rulesCfg)
@@ -21,14 +18,10 @@ export default {
         el.addEventListener('keyup', function (e) {
         for(let name in rulesCfg) {
           let result = rules[name](e.target.value, binding.value[name])
-          if (!result) {
-            if (!errMsg.hasOwnProperty(name)) {
-              errMsg[name] = messageList[name]
-            }
-          } else {
-            if (errMsg.hasOwnProperty(name)) {
-              delete errMsg[name]
-            }
+          if (result && errMsg.hasOwnProperty(name)) {
+            delete errMsg[name]
+          } else if(!errMsg.hasOwnProperty(name)) {
+            errMsg[name] = messageList[name]
           }
           el.setAttribute('errMsg', JSON.stringify(errMsg))
         }

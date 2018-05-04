@@ -5,21 +5,21 @@
       <div class="label">
         非空
       </div>
-      <input v-validate.aa.bb="inputValue" v-model="inputValue" type="text" class="input-control">
+      <input v-validate="rules" type="text" class="input-control">
     </div>
 
     <div class="form-control">
       <div class="label">
         长度范围
       </div>
-      <input type="text" class="input-control">
+      <input v-validate="{required: true, max: 5, min: 1}" type="text" class="input-control">
     </div>
 
     <div class="form-control">
       <div class="label">
         RegExp
       </div>
-      <input type="text" class="input-control">
+      <input v-validate="{min: 1, isPhone: true}" type="text" class="input-control">
     </div>
 
     <div class="form-control">
@@ -33,7 +33,6 @@
 
 <script>
 import HelloWorld from './components/HelloWorld'
-
 export default {
   name: 'App',
   components: {
@@ -57,7 +56,11 @@ export default {
         }
       ],
       param1: 'aaa',
-      param2: 'bbb'
+      param2: 'bbb',
+      rules: {
+        required: true,
+        max: 5
+      }
     }
   }
 }

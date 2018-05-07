@@ -8,7 +8,10 @@ export default {
     Vue.directive('validate', {
       inserted (el, binding) {
         let rulesCfg = binding.value
-        let messageList = generateErrMsg(rulesCfg)
+        console.log(el)
+        let msgCfg = el.getAttribute('msgCfg')
+        console.log('msgCfg', msgCfg)
+        let messageList = generateErrMsg(rulesCfg, msgCfg)
         // 监听input的keyup事件，每次键入都进行规则匹配
         let errMsg = {}
         if (rulesCfg.hasOwnProperty('required')) {
@@ -20,9 +23,10 @@ export default {
           let result = rules[name](e.target.value, binding.value[name])
           if (result && errMsg.hasOwnProperty(name)) {
             delete errMsg[name]
-          } else if(!errMsg.hasOwnProperty(name)) {
+          } else if(!result && !errMsg.hasOwnProperty(name)) {
             errMsg[name] = messageList[name]
           }
+          console.log(errMsg)
           el.setAttribute('errMsg', JSON.stringify(errMsg))
         }
         }, false)

@@ -8,11 +8,12 @@
  * @return Object
  * */
 export default function (rulesList, msgCfg) {
-  return {
-    required: msgCfg.required || '此项必填',
-    max: msgCfg.max || `最大长度不能超过${rulesList.max}位！`,
-    min: msgCfg.min || `最小长度不得小于${rulesList.min}位！`,
-    phone: msgCfg.phone || '手机号不合法',
-    email: msgCfg.email || '邮箱不合法',
-  }
+  return Object.assign({
+    required: '此项必填',
+    max: `最大长度不能超过${rulesList.max}位！`,
+    min: `最小长度不得小于${rulesList.min}位！`,
+    phone: '手机号不合法',
+    email: '邮箱不合法',
+    reg: '输入不合法'
+  }, msgCfg)
 }

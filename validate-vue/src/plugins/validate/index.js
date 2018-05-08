@@ -9,8 +9,7 @@ export default {
       inserted (el, binding) {
         let rulesCfg = binding.value
         console.log(el)
-        let msgCfg = el.getAttribute('msgCfg')
-        console.log('msgCfg', msgCfg)
+        let msgCfg = eval('(' + el.getAttribute('msg') + ')')
         let messageList = generateErrMsg(rulesCfg, msgCfg)
         // 监听input的keyup事件，每次键入都进行规则匹配
         let errMsg = {}
@@ -26,7 +25,6 @@ export default {
           } else if(!result && !errMsg.hasOwnProperty(name)) {
             errMsg[name] = messageList[name]
           }
-          console.log(errMsg)
           el.setAttribute('errMsg', JSON.stringify(errMsg))
         }
         }, false)

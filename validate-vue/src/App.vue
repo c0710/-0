@@ -5,21 +5,21 @@
       <div class="label">
         非空
       </div>
-      <input v-validate="rules" :msgCfg="{required: '不能为空'}" type="text" class="input-control input1">
+      <input v-validate="rules" msg="{required: '不能为空'}" type="text" class="input-control input1">
     </div>
 
     <div class="form-control">
       <div class="label">
         长度范22围
       </div>
-      <input v-validate="{required: true, max: 5, min: 2}"  :msgCfg="{required: '必填'}" type="text" class="input-control input2">
+      <input v-validate="{required: true, max: 5, min: 2, reg: /aaa/g}"  msg="{required: '必填'}" type="text" class="input-control input2">
     </div>
 
     <div class="form-control">
       <div class="label">
         RegExp
       </div>
-      <input v-validate="{required: true, min: 1, phone: true}" :msgCfg="{required: '此项必填'}" type="text" class="input-control input3">
+      <input v-validate="{required: true, min: 1, phone: true}" msg="{required: '此项必填'}" type="text" class="input-control input3">
     </div>
 
     <div class="form-control">
